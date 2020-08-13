@@ -1,0 +1,74 @@
+body{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(66, 66, 66);
+  font-family: Roboto;
+}
+
+.App {
+  display: flex;
+  width: 1020px;
+  flex-wrap: wrap;
+
+  &__logo {
+    display: block;
+    width: 250px;
+  }
+
+  &__header {
+    margin-top: 30px;
+    display: flex;
+    width: 100%;
+    color: rgb(218, 218, 218);
+    font-size: 20px;
+    font-weight: 900;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__birdsPanel {
+    margin-top: 30px;
+    display: flex;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  &__birdsPanel__item {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    padding: 10px;
+    color: rgb(218, 218, 218);
+    font-size: 20px;
+    background-color: rgb(19, 95, 76);
+  }
+
+  &__birdsPanel__item_active {
+    background-color: rgb(28, 143, 114);
+  }
+
+  &__player {
+    background-color: transparent;
+  }
+
+  &__birdContain {
+    margin-top: 30px;
+    display: flex;
+    color: rgb(218, 218, 218);
+    width: 100%;
+  }
+
+  &__birdImage {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  &__birdDescription {
+    flex-grow: 1;
+  }
+
+}
