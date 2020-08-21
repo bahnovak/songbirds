@@ -49,8 +49,8 @@ const App = () => {
   const [answer, setAnswer] = useState('');
   const [isShowAnswer, setIsShowAnswer] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
-  const [isFinish, setIsFinish] = useState(true);
-  const [isTopScore, setIsTopScore] = useState(true);
+  const [isFinish, setIsFinish] = useState(false);
+  const [isTopScore, setIsTopScore] = useState(false);
   const audioRef = React.createRef();
 
   console.log(`current answer: ${birdsArray[random].name}`);
