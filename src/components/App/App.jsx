@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
@@ -54,6 +54,11 @@ const App = () => {
   const audioRef = React.createRef();
 
   console.log(`current answer: ${birdsArray[random].name}`);
+
+  useEffect(() => {
+    if (score === 30) setIsTopScore(true);
+  }, [score]);
+
   const handleBirdsFlagsTrue = (index) => {
     setBirdsFlagsTrue(
       birdsFlagsTrue.map((el, i) => {
