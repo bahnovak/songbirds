@@ -11,6 +11,7 @@ import bird from '../../img/bird.jpg';
 import birdsData from '../../data/birdsData';
 import error from '../../sound/error.mp3';
 import win from '../../sound/win.mp3';
+import lukachyk from '../../img/lukachyk.png';
 
 const groupNames = [
   'Разминка',
@@ -48,6 +49,8 @@ const App = () => {
   const [answer, setAnswer] = useState('');
   const [isShowAnswer, setIsShowAnswer] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
+  const [isFinish, setIsFinish] = useState(true);
+  const [isTopScore, setIsTopScore] = useState(true);
   const audioRef = React.createRef();
 
   console.log(`current answer: ${birdsArray[random].name}`);
@@ -86,6 +89,22 @@ const App = () => {
     setBirdsArray(birdsData[birdsGroup + 1]);
   };
 
+  const handleNewGame = () => {
+    random = randomInt();
+    setBirdsGroup(0);
+    setBirdImage(bird);
+    setBirdName('*****');
+    setBirdsFlagsTrue(exampleFlags);
+    setBirdsFlagsFalse(exampleFlags);
+    setAnswer('');
+    setIsShowAnswer(false);
+    setIsCorrect(false);
+    setBirdsArray(birdsData[0]);
+    setIsFinish(false);
+    setIsTopScore(false);
+    setScore(0);
+  };
+
   const handleCheckScore = () => {
     let result = 5;
     birdsFlagsFalse.forEach((e) => {
@@ -119,7 +138,9 @@ const App = () => {
           );
         })}
       </div>
-      <div className={styles.App__birdContain}>
+      <div
+        className={classNames({ [styles.App__birdContain]: true, [styles.App__none]: isFinish })}
+      >
         <div className={styles.App__birdImage}>
           <img src={birdImage} alt="" />
         </div>
@@ -144,7 +165,7 @@ const App = () => {
           </div>
         </div>
       </div>
-      <div className={styles.App__birdsList}>
+      <div className={classNames({ [styles.App__birdsList]: true, [styles.App__none]: isFinish })}>
         {birdsArray.map((elem, index) => {
           return (
             <div
@@ -180,13 +201,17 @@ const App = () => {
         })}
       </div>
       {!isShowAnswer ? (
-        <div className={styles.App__birdsAnswer}>
+        <div
+          className={classNames({ [styles.App__birdsAnswer]: true, [styles.App__none]: isFinish })}
+        >
           Послушайте плеер.
           <br />
           Выберите птицу из списка.
         </div>
       ) : (
-        <div className={styles.App__birdsAnswer}>
+        <div
+          className={classNames({ [styles.App__birdsAnswer]: true, [styles.App__none]: isFinish })}
+        >
           <div className={styles.App__birdsAnswer__image}>
             <img src={birdsArray[answer].image} alt="" />
           </div>
@@ -222,12 +247,60 @@ const App = () => {
         className={classNames({
           [styles.App__nextButton]: true,
           [styles.App__nextButton_active]: isCorrect,
+          [styles.App__none]: isFinish,
         })}
         onClick={() => {
-          if (isCorrect) handleNextlevel();
+          if (birdsGroup === 5) {
+            setIsFinish(true);
+          } else if (birdsGroup !== 5 && isCorrect) {
+            handleNextlevel();
+          }
         }}
       >
-        Next level
+        {birdsGroup === 5 ? 'Завершить' : 'Продолжить'}
+      </div>
+      <div
+        className={classNames({
+          [styles.App__finish]: true,
+          [styles.App__none]: !isFinish,
+        })}
+      >
+        {!isTopScore ? (
+          <div className={styles.App__finish_notTop}>
+            <h1>Поздравляем!</h1>
+            <p>
+              Вы прошли викторину и набрали
+              {` ${score} `}
+              из 30 возможных.
+            </p>
+            <div
+              className={classNames({
+                [styles.App__nextButton]: true,
+                [styles.App__nextButton_active]: true,
+              })}
+              onClick={handleNewGame}
+            >
+              Попробовать ещё раз
+            </div>
+          </div>
+        ) : (
+          <div className={styles.App__finish_top}>
+            <img src={lukachyk} alt="" />
+            <p>
+              Все тваи правильные атветы, а их 6 из 6 на секундачку, сфабрыкованы у Польшчы. Но гэта
+              только мои ашчушчэния. Нужна праверыть, папробуй ешо раз.
+            </p>
+            <div
+              className={classNames({
+                [styles.App__nextButton]: true,
+                [styles.App__nextButton_active]: true,
+              })}
+              onClick={handleNewGame}
+            >
+              Лукачык не мой чырык
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
