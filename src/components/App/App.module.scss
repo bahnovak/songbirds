@@ -4,22 +4,24 @@ body{
   justify-content: center;
   margin: 0;
   padding: 0;
-  background-color: rgb(66, 66, 66);
-  font-family: Roboto;
+  background-color: rgb(39, 39, 39);
+  font-family: 'Roboto', sans-serif;
 }
 
 .App {
+  box-sizing: border-box;
   display: flex;
   width: 1020px;
   flex-wrap: wrap;
+  justify-content: space-between;
 
   &__logo {
     display: block;
-    width: 250px;
+    width: 200px;
   }
 
   &__header {
-    margin-top: 30px;
+    margin-top: 15px;
     display: flex;
     width: 100%;
     color: rgb(218, 218, 218);
@@ -30,7 +32,7 @@ body{
   }
 
   &__birdsPanel {
-    margin-top: 30px;
+    margin-top: 15px;
     display: flex;
     width: 100%;
     border-radius: 10px;
@@ -38,13 +40,13 @@ body{
   }
 
   &__birdsPanel__item {
-    display: flex;
-    justify-content: center;
+    transition: 0.5s;
     flex-grow: 1;
     padding: 10px;
     color: rgb(218, 218, 218);
     font-size: 20px;
     background-color: rgb(19, 95, 76);
+    text-align: center;
   }
 
   &__birdsPanel__item_active {
@@ -56,19 +58,262 @@ body{
   }
 
   &__birdContain {
-    margin-top: 30px;
+    border-radius: 10px;
+    background-color: rgb(65, 65, 65);
+    padding: 15px;
+    margin-top: 15px;
     display: flex;
     color: rgb(218, 218, 218);
     width: 100%;
   }
 
   &__birdImage {
-    border-radius: 10px;
+    border-radius: 15px;
     overflow: hidden;
+    height: 150px;
+  }
+
+  &__birdImage img{
+    height: 100%;
   }
 
   &__birdDescription {
     flex-grow: 1;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: 40px;
   }
 
+  &__birdName {
+    width: 100%;
+    font-size: 30px;
+  }
+
+  &__birdSound {
+    padding-top: 10px;
+    border-top: 1px solid rgb(122, 122, 122);
+    width: 100%;
+  }
+
+  &__birdsList {
+    margin-top: 15px;
+    border-radius: 5px;
+    background-color: rgb(65, 65, 65);
+    border: 1px solid rgb(122, 122, 122);
+    width: 45%;
+  }
+
+  &__birdsList__item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    color: rgb(218, 218, 218);
+    border-bottom: 1px solid rgb(122, 122, 122);
+    cursor: pointer;
+  }
+
+  &__birdsList__item:last-child {
+    border-bottom: none;
+  }
+
+  &__birdsList__item:hover {
+    background-color: rgb(116, 116, 116);
+  }
+
+  &__birdsList__item__circle {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(197, 197, 197);
+    margin-right: 10px;
+  }
+
+  &__birdsList__item__circle_true {
+    background-color: rgb(45, 167, 45);
+  }
+
+  &__birdsList__item__circle_false {
+    background-color: rgb(175, 54, 54);
+  }
+
+  &__birdsAnswer {
+    color: rgb(218, 218, 218);
+    margin-top: 15px;
+    border-radius: 5px;
+    background-color: rgb(65, 65, 65);
+    border: 1px solid rgb(122, 122, 122);
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+
+  &__birdsAnswer__image {
+    border-radius: 15px;
+    overflow: hidden;
+    height: 120px;
+    margin-right: 10px; 
+  }
+
+  &__birdsAnswer__image img{
+    height: 100%;
+  }
+
+  &__birdsAnswer__description {
+    flex-grow: 1;
+  }
+
+  &__birdsAnswer__description__name {
+    font-size: 25px;
+    font-weight: 700;
+    border-bottom: 1px solid rgb(122, 122, 122);
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+  }
+
+  &__birdsAnswer__description__species {
+    border-bottom: 1px solid rgb(122, 122, 122);
+    padding-bottom: 5px;
+  }
+
+  &__birdsAnswer__text {
+    width: 100%;
+  }
+
+  &__nextButton {
+    transition: 0.5s;
+    color: rgb(218, 218, 218);
+    border-radius: 5px;
+    background-color: rgb(65, 65, 65);
+    border: 1px solid rgb(122, 122, 122);
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+
+  &__nextButton_active {
+    transition: 0.5s;
+    background-color: rgb(19, 95, 76);
+  }
+
+  &__nextButton_active:hover {
+    background-color: rgb(28, 143, 114);
+  }
+
+  &__finish {
+    margin-top: 15px;
+    border-radius: 5px;
+    background-color: rgb(65, 65, 65);
+    border: 1px solid rgb(122, 122, 122);
+    width: 100%;
+    color: rgb(218, 218, 218);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__finish_notTop {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 30px;
+    align-items: center;
+  }
+
+  &__finish_notTop p {
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+  }
+
+  &__finish_notTop h1 {
+    font-size: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__finish_top img {
+    width: 70%;
+  }
+
+  &__finish_top {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  &__finish_top p {
+    font-size: 25px;
+    width: 100%;
+    text-align: center;
+  }
+
+  &__none {
+    display: none;
+  }
+
+}
+
+@media screen and (max-width: 1050px) {
+  .App {
+    width: 768px;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .App {
+    width: 320px;
+
+    &__birdsPanel__item {
+      display: none;
+    }
+
+    &__birdsPanel__item_active {
+      display: block;
+    }
+
+    &__birdContain {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    &__birdDescription {
+      margin-left: 0;
+      margin-top: 10px;
+      justify-content: center;
+    }
+
+    &__birdName {
+      text-align: center;
+    }
+
+    &__birdsList {
+      width: 100%;
+    }
+
+    &__birdsAnswer {
+      width: 100%;
+      justify-content: center;
+    }
+
+    &__birdsAnswer__description {
+      margin-top: 10px;
+    }
+
+    &__birdsAnswer__description__name {
+      text-align: center;
+    }
+
+    &__birdsAnswer__description__species {
+      text-align: center;
+    }
+  }
 }
